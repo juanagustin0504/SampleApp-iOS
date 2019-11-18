@@ -50,6 +50,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Hl4-0l-ITk">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N94-7h-h39" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PSV-3v-7uv" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1k1-An-r46">
@@ -61,13 +62,13 @@
                         <segue destination="oJJ-LL-fde" kind="relationship" relationship="rootViewController" id="AaO-oo-ofd"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N94-7h-h39" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="456.80000000000001" y="40.929535232383813"/>
         </scene>
         <!--Bizplay-->
         <scene sceneID="25s-Pt-xMJ">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pf2-Am-J30" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="c1H-KM-6qr" customClass="WebViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uXq-Aj-dno">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -77,7 +78,6 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bizplay" id="pRT-oO-bJR"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pf2-Am-J30" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1988" y="41"/>
         </scene>

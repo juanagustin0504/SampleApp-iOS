@@ -63,7 +63,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     @available(iOS 8.0, *)
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        activityIndicator = UIActivityIndicatorView(style: .whiteLarge)
+        activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.frame = CGRect(x: view.frame.midX - 50, y: view.frame.midY - 50, width: 100, height: 100)
         activityIndicator.color = UIColor.gray
         activityIndicator.hidesWhenStopped = true
