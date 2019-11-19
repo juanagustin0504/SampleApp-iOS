@@ -16,8 +16,40 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     var locLast : CLLocationCoordinate2D?
     var getLocation = false
     
+    var time = 180
+    var timer = Timer()
+    var startTimer = false
+    
+    @IBOutlet var lblTimer: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !startTimer {
+            startTimer = true
+            timeLimitStart()
+        }
+        
+        
+    }
+    
+    func timeLimitStart() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timeLimit), userInfo: nil, repeats: true)
+    }
+    
+    @objc func timeLimit() {
+        if time > 0 {
+            time -= 1
+            lblTimer.text = "\(time / 60)분 \(time % 60)초"
+        } else {
+            timeLimitStop()
+        }
+    }
+    
+    func timeLimitStop() {
+        startTimer = false
+        timer.invalidate()
     }
     
     @IBAction func btnGetLocalLocation(_ sender: UIButton) {
@@ -56,7 +88,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         let status = CLLocationManager.authorizationStatus()
         
         if status == CLAuthorizationStatus.denied || status == CLAuthorizationStatus.restricted {
-            let alter = UIAlertController(title: "위치권한 설정이 '허용 안 함'으로 되어있습니다.", message: "앱 설정 화면으로 가시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+            let alert = UIAlertController(title: "위치권한 설정이 '허용 안 함'으로 되어있습니다.", message: "앱 설정 화면으로 가시겠습니까?", preferredStyle: UIAlertController.Style.alert)
             let logOkAction = UIAlertAction(title: "네", style: UIAlertAction.Style.default){
                 (action: UIAlertAction) in
                 if #available(iOS 10.0, *) {
@@ -69,11 +101,13 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
                 (action: UIAlertAction) in
                 self.locLast = nil
             }
-            alter.addAction(logNoAction)
-            alter.addAction(logOkAction)
-            self.present(alter, animated: true, completion: nil)
+            alert.addAction(logNoAction)
+            alert.addAction(logOkAction)
+            self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    
     
     
 }

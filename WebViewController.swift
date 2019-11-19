@@ -76,6 +76,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         self.activityIndicator.removeFromSuperview()
     }
     
+    
+    
 
     /*
     // MARK: - Navigation
