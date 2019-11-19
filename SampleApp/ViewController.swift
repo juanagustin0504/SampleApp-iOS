@@ -9,16 +9,16 @@
 import UIKit
 import CoreLocation
 
+
 class ViewController: UIViewController, CLLocationManagerDelegate {
+    
     
     let locationManager = CLLocationManager()
     
     var locLast : CLLocationCoordinate2D?
     var getLocation = false
     
-    var time = 180
-    var timer = Timer()
-    var startTimer = false
+    
     
     @IBOutlet var lblTimer: UILabel!
     
@@ -26,31 +26,12 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if !startTimer {
-            startTimer = true
-            timeLimitStart()
-        }
+        
         
         
     }
     
-    func timeLimitStart() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(ViewController.timeLimit), userInfo: nil, repeats: true)
-    }
     
-    @objc func timeLimit() {
-        if time > 0 {
-            time -= 1
-            lblTimer.text = "\(time / 60)분 \(time % 60)초"
-        } else {
-            timeLimitStop()
-        }
-    }
-    
-    func timeLimitStop() {
-        startTimer = false
-        timer.invalidate()
-    }
     
     @IBAction func btnGetLocalLocation(_ sender: UIButton) {
         

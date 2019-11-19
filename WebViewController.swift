@@ -9,8 +9,19 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
+let time = 10
+var timer : Timer?
+var startTimer = false
 
+
+class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
+    
+    var temp : Int = 0
+
+    
+    
+    var taskId : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+    
     var webView: WKWebView!
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -23,6 +34,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         self.view = self.webView!
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -34,6 +47,70 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         
         
         webView.load(request)
+        
+        
+        temp = time
+        startTimer = true
+        timer = Timer()
+        timeLimitStart()
+        
+        let sharedApp = UIApplication.shared
+        taskId = sharedApp.beginBackgroundTask(expirationHandler: {[weak self] in
+            if let strongSelf = self {
+                sharedApp.endBackgroundTask(strongSelf.taskId)
+                strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
+            }
+        })
+        
+        DispatchQueue.global().async {
+            [weak self] in
+            if let strongSelf = self {
+                sharedApp.endBackgroundTask(strongSelf.taskId)
+                strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timeLimitStop()
+    }
+    
+    func timeLimitStart() {
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(WebViewController.timeLimit), userInfo: nil, repeats: true)
+        
+    }
+    
+    @objc func timeLimit() {
+        if temp > 0 {
+            temp -= 1
+            
+            print(temp)
+        } else {
+            timeLimitStop()
+        }
+        
+        let currentState = UIApplication.shared.applicationState
+        switch currentState {
+        case .active:
+            print("active")
+        case .inactive:
+            print("inactive")
+        case .background:
+            print("background")
+            print("Remaining Time: \(UIApplication.shared.backgroundTimeRemaining)")
+        @unknown default:
+            print("default")
+        }
+    }
+    
+    func timeLimitStop() {
+        startTimer = false
+        timer?.invalidate()
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
