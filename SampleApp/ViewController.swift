@@ -17,16 +17,10 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     
     var locLast : CLLocationCoordinate2D?
     var getLocation = false
-    
-    
-    
-    @IBOutlet var lblTimer: UILabel!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         
     }

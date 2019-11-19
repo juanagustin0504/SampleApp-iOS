@@ -14,11 +14,13 @@ var timer : Timer?
 var startTimer = false
 
 
+
+
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
+    
     
     var temp : Int = 0
 
-    
     
     var taskId : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
     
@@ -32,6 +34,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         webView.navigationDelegate = self
         
         self.view = self.webView!
+        
+        
     }
     
     
@@ -54,6 +58,15 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         timer = Timer()
         timeLimitStart()
         
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        
+    }
+    
+    @objc func appMovedToBackground() {
+        
+        print("App moved to background!")
         let sharedApp = UIApplication.shared
         taskId = sharedApp.beginBackgroundTask(expirationHandler: {[weak self] in
             if let strongSelf = self {
@@ -62,6 +75,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
             }
         })
         
+        // 메모리 제거 해야 함 //
         DispatchQueue.global().async {
             [weak self] in
             if let strongSelf = self {
@@ -69,9 +83,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
                 strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
+        
         
     }
     
@@ -92,6 +104,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         } else {
             timeLimitStop()
         }
+        
+        
         
         let currentState = UIApplication.shared.applicationState
         switch currentState {

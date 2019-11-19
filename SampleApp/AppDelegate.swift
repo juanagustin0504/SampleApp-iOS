@@ -53,7 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // 앱이 종료될 때(Terminate App) //
     func applicationWillTerminate(_ application: UIApplication) {
         print("applicationWillTerminate")
-    }
+    }				
 
 }
 
