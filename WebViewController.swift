@@ -9,23 +9,25 @@
 import UIKit
 import WebKit
 
-let time = 10
-var timer : Timer?
-var startTimer = false
+
 
 
 
 
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
+    let time = 180
+    var timer : Timer?
+    var startTimer = false
     
-    var temp : Int = 0
+    var currentTime : Int = 0
 
     
     var taskId : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
     
     var webView: WKWebView!
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
     
     override func loadView() {
         super.loadView()
@@ -53,20 +55,26 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         webView.load(request)
         
         
-        temp = time
+        currentTime = time
         startTimer = true
         timer = Timer()
         timeLimitStart()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
         
         
     }
     
+    
+    // 백그라운드로 갔을 때 //
     @objc func appMovedToBackground() {
         
         print("App moved to background!")
+        
+        currentTime = time
+        
         let sharedApp = UIApplication.shared
         taskId = sharedApp.beginBackgroundTask(expirationHandler: {[weak self] in
             if let strongSelf = self {
@@ -74,17 +82,24 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
                 strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
             }
         })
-        
+
         // 메모리 제거 해야 함 //
-        DispatchQueue.global().async {
-            [weak self] in
-            if let strongSelf = self {
-                sharedApp.endBackgroundTask(strongSelf.taskId)
-                strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
-            }
-        }
+//        DispatchQueue.global().async {
+//            [weak self] in
+//            if let strongSelf = self {
+//                sharedApp.endBackgroundTask(strongSelf.taskId)
+//                strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
+//            }
+//        }
+//
         
+    }
+    
+    @objc func appMovedToForeground() {
         
+        print("App moved to foreground!")
+        
+        currentTime = time
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -97,28 +112,26 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     }
     
     @objc func timeLimit() {
-        if temp > 0 {
-            temp -= 1
+        if currentTime > 0 {
+            currentTime -= 1
             
-            print(temp)
+            print(currentTime)
         } else {
             timeLimitStop()
         }
-        
-        
-        
-        let currentState = UIApplication.shared.applicationState
-        switch currentState {
-        case .active:
-            print("active")
-        case .inactive:
-            print("inactive")
-        case .background:
-            print("background")
-            print("Remaining Time: \(UIApplication.shared.backgroundTimeRemaining)")
-        @unknown default:
-            print("default")
-        }
+        // 앱의 상태 체크(app status check)
+//        let currentState = UIApplication.shared.applicationState
+//        switch currentState {
+//        case .active:
+//            print("active")
+//        case .inactive:
+//            print("inactive")
+//        case .background:
+//            print("background")
+//            print("Remaining Time: \(UIApplication.shared.backgroundTimeRemaining)")
+//        @unknown default:
+//            print("default")
+//        }
     }
     
     func timeLimitStop() {

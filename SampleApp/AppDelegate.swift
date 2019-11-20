@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
     }
     
-    // 홈 버튼을 눌렀을 때(Home Button Click)//
+    // 홈 버튼을 눌렀을 때(Home Button Click) //
     func applicationWillResignActive(_ application: UIApplication) {
         print("applicationWillResignActive")
     }
