@@ -7,13 +7,27 @@
 //
 
 import UIKit
+import Firebase
 
 class NetworkingViewController: UIViewController {
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // 서버 통신 시작 //
+        
+        // indicator 실행 //
+        
+        // 서비스 점검 중일 때 //
+        
+        // 앱 업데이트 후 이용해야 할 때 //
+        
+        // 앱 업데이트 선택할 때 //
+        
+        
     }
     
 
