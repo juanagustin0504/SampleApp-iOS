@@ -16,7 +16,7 @@ import WebKit
 
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
-    let time = 180
+    let time = 5
     var timer : Timer?
     var startTimer = false
     
@@ -118,6 +118,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
             print(currentTime)
         } else {
             timeLimitStop()
+            isScreenTimeOver = true
+            self.navigationController?.popViewController(animated: true)
         }
         // 앱의 상태 체크(app status check)
 //        let currentState = UIApplication.shared.applicationState
@@ -137,8 +139,9 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     func timeLimitStop() {
         startTimer = false
         timer?.invalidate()
-        self.navigationController?.popViewController(animated: true)
     }
+    
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

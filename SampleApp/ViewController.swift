@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 
+var isScreenTimeOver = false
 
 class ViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -25,6 +26,23 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        print("viewDidAppear \(isScreenTimeOver)")
+        if isScreenTimeOver {
+            showAlert()
+            isScreenTimeOver = !isScreenTimeOver
+            print("\(isScreenTimeOver)")
+        }
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: nil, message: "일정시간 앱을 이용하지 않아 메인화면으로 이동합니다.", preferredStyle: UIAlertController.Style.alert)
+        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+        
+        alert.addAction(alertAction)
+        
+        self.present(alert, animated: true)
+    }
     
     
     @IBAction func btnGetLocalLocation(_ sender: UIButton) {
