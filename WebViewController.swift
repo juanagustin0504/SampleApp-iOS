@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
+class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, UIGestureRecognizerDelegate {
     
     let time = 180
     var timer : Timer?
@@ -24,17 +24,25 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
     
+    
     override func loadView() {
         super.loadView()
+        
+        
+        
         webView = WKWebView(frame: self.view.frame)
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
+        let gesture = UITapGestureRecognizer(target: self,
+                                             action: #selector(gotTap)
+        )
+        gesture.delegate = self
+        self.webView?.scrollView.addGestureRecognizer(gesture)
+        
+
         self.view = self.webView!
-        
-        
     }
-    
     
     
     override func viewDidLoad() {
@@ -152,7 +160,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     }
     
     @available(iOS 8.0, *)
-    public func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Swift.Void) {
+    public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Swift.Void) {
         let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "CANCEL", style: .cancel, handler: {(action) in completionHandler(false)})
         let okAction = UIAlertAction(title: "OK", style: .default, handler: {(action) in completionHandler(true)})
@@ -178,9 +186,16 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         self.activityIndicator.removeFromSuperview()
     }
     
-    
-    
+    @objc func gotTap(gesture:UITapGestureRecognizer) {
+        currentTime = time
+    }
 
+    // MARK: UIGestureRecognizerDelegate method
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -190,5 +205,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
 
 }
