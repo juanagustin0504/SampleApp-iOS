@@ -23,15 +23,14 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("viewDidAppear \(isScreenTimeOver)")
+//        print("viewDidAppear \(isScreenTimeOver)")
         if isScreenTimeOver {
             showAlert()
             isScreenTimeOver = !isScreenTimeOver
-            print("\(isScreenTimeOver)")
+//            print("\(isScreenTimeOver)")
         }
     }
     
@@ -71,7 +70,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate {
         locLast = locValue
         
         let alert = UIAlertController(title: "위치", message: "위도 : \(locValue.latitude)\n경도 : \(locValue.longitude)", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
         alert.addAction(alertAction)
         self.present(alert, animated: true, completion: nil)
         getLocation = true

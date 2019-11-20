@@ -9,14 +9,9 @@
 import UIKit
 import WebKit
 
-
-
-
-
-
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
-    let time = 5
+    let time = 180
     var timer : Timer?
     var startTimer = false
     
@@ -71,7 +66,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     // 백그라운드로 갔을 때 //
     @objc func appMovedToBackground() {
         
-        print("App moved to background!")
+//        print("App moved to background!")
         
         currentTime = time
         
@@ -97,7 +92,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     
     @objc func appMovedToForeground() {
         
-        print("App moved to foreground!")
+//        print("App moved to foreground!")
         
         currentTime = time
     }
