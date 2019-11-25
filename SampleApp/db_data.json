@@ -1,0 +1,10 @@
+{
+  "version" : {
+    "force_update_message" : "앱 업데이트 후 이용해주세요.",
+    "lastest_version_code" : "2",
+    "lastest_version_name" : "0.2",
+    "minimum_version_code" : "1",
+    "minimum_version_name" : "0.1",
+    "optional_update_message" : "앱 업데이트 후 이용하시겠습니까?"
+  }
+}
