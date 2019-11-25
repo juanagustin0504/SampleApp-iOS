@@ -13,7 +13,7 @@ class NetworkingViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    var ref : DatabaseReference!
+    var ref : DatabaseReference! // 데이터베이스 객체 //
     
     override func viewDidLoad() {
         super.viewDidLoad()

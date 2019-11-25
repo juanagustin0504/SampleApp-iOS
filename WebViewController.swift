@@ -11,17 +11,17 @@ import WebKit
 
 class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, UIGestureRecognizerDelegate {
     
-    let time = 180
-    var timer : Timer?
-    var startTimer = false
+    let time = 180              // 앱 이용시간 //
+    var timer : Timer?          // 타이머 객체 //
+    var startTimer = false      // 타이머가 시작되었는지 검사 //
     
-    var currentTime : Int = 0
+    var currentTime : Int = 0   // 현재 시간 //
 
     
-    var taskId : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid
+    var taskId : UIBackgroundTaskIdentifier = UIBackgroundTaskIdentifier.invalid // 백그라운드 동작을 위한 태스크 아이디 //
     
-    var webView: WKWebView!
-    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    var webView: WKWebView!                                                      // 웹뷰 선언 //
+    var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()   // 인디케이터 선언 //
     
     
     
@@ -34,6 +34,7 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
         webView.uiDelegate = self
         webView.navigationDelegate = self
         
+        // 웹뷰 위에서 제스처 감지를 위한 설정 //
         let gesture = UITapGestureRecognizer(target: self,
                                              action: #selector(gotTap)
         )
@@ -55,14 +56,15 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
         let request = URLRequest(url: url!)
         
         
-        webView.load(request)
+        webView.load(request) // 웹뷰 띄우기 //
         
         
         currentTime = time
         startTimer = true
         timer = Timer()
-        timeLimitStart()
+        timeLimitStart() // 타이머 실행 //
         
+        // 백그라운드, 포그라운드 감지 //
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         notificationCenter.addObserver(self, selector: #selector(appMovedToForeground), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -74,8 +76,6 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
     // 백그라운드로 갔을 때 //
     @objc func appMovedToBackground() {
         
-//        print("App moved to background!")
-        
         currentTime = time
         
         let sharedApp = UIApplication.shared
@@ -85,35 +85,25 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
                 strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
             }
         })
-
-        // 메모리 제거 해야 함 //
-//        DispatchQueue.global().async {
-//            [weak self] in
-//            if let strongSelf = self {
-//                sharedApp.endBackgroundTask(strongSelf.taskId)
-//                strongSelf.taskId = UIBackgroundTaskIdentifier.invalid
-//            }
-//        }
-//
-        
     }
     
+    // 포그라운드로 갔을 때 //
     @objc func appMovedToForeground() {
-        
-//        print("App moved to foreground!")
-        
         currentTime = time
     }
     
+    // 뷰컨이 사라질 때 //
     override func viewWillDisappear(_ animated: Bool) {
-        timeLimitStop()
+        timeLimitStop() // 타이머 정지 //
     }
     
+    // 타이머 실행 메소드 //
     func timeLimitStart() {
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(WebViewController.timeLimit), userInfo: nil, repeats: true)
         
     }
     
+    // 시간이 줄어드는 메소드 //
     @objc func timeLimit() {
         if currentTime > 0 {
             currentTime -= 1
@@ -139,12 +129,11 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
 //        }
     }
     
+    // 타이머 정지 메소드 //
     func timeLimitStop() {
         startTimer = false
-        timer?.invalidate()
+        timer?.invalidate() // 타이머 제거 //
     }
-    
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
