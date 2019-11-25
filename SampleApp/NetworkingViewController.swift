@@ -30,21 +30,19 @@ class NetworkingViewController: UIViewController {
         
         // 서버 통신 시작 //
         
-        
         ref = Database.database().reference()
         
         ref.child("version").observeSingleEvent(of: .value, with: { snapShot in
             let versionDic = snapShot.value as? Dictionary<String, AnyObject>
             
+            
             let versionDbData = DbVersionData()
             versionDbData.setValuesForKeys(versionDic!)
            
-            print("[force_update_message] : \(versionDbData.force_update_message)")
-            print("[lastest_version_code] : \(versionDbData.lastest_version_code)")
-            print("[minimum_version_name] : \(versionDbData.minimum_version_name)")
-            print("[optional_update_message] : \(versionDbData.optional_update_message)")
+            self.checkUpdateVersion(dbdata: versionDbData)
         
         })
+        
         
         self.activityIndicator.removeFromSuperview()
         
@@ -62,7 +60,7 @@ class NetworkingViewController: UIViewController {
         if (Int(appBuildVersion!)! < Int(appMinimumVersion)!) {
             // 강제업데이트 //
             forceUdpateAlert(message: dbdata.force_update_message)
-        }else if(Int(appBuildVersion!)! < Int(appLastestVersion)!) {
+        } else if(Int(appBuildVersion!)! < Int(appLastestVersion)!) {
             // 선택업데이트 //
             optionalUpdateAlert(message: dbdata.optional_update_message, version: Int(dbdata.lastest_version_code)!)
         }
@@ -73,9 +71,13 @@ class NetworkingViewController: UIViewController {
         
         let refreshAlert = UIAlertController(title: "UPDATE", message: message, preferredStyle: UIAlertController.Style.alert)
         
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            // 앱 종료 //
+            exit(0)
+        }))
+        
         refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
-            print("Go to AppStore")
-            // AppStore 로 가도록 연결시켜 주면 됩니다.
+            // 앱 업데이트 //
         }))
         
         self.present(refreshAlert, animated: true, completion: nil)
@@ -88,13 +90,14 @@ class NetworkingViewController: UIViewController {
         
         let refreshAlert = UIAlertController(title: "UPDATE", message: message, preferredStyle: UIAlertController.Style.alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action: UIAlertAction!) in
-            print("Go to AppStore")
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            // 메인화면으로 이동 //
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
-            print("Close Alert")
+        refreshAlert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action: UIAlertAction!) in
+            // 앱 업데이트 //
         }))
+        
         
         self.present(refreshAlert, animated: true, completion: nil)
         

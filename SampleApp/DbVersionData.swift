@@ -8,6 +8,7 @@
 
 import UIKit
 
+@objcMembers
 class DbVersionData: NSObject {
     var lastest_version_code: String        // 최신버전 코드 //
     var lastest_version_name: String        // 최신버전 명 //
@@ -21,12 +22,12 @@ class DbVersionData: NSObject {
          minimum_version_code:String, minimum_version_name:String,
          force_update_message:String, optional_update_message:String) {
         
-        self.lastest_version_code       = lastest_version_code
-        self.lastest_version_name       = lastest_version_name
-        self.minimum_version_code       = minimum_version_code
-        self.minimum_version_name       = minimum_version_name
-        self.force_update_message       = force_update_message
-        self.optional_update_message    = optional_update_message
+        self.lastest_version_code = lastest_version_code
+        self.lastest_version_name = lastest_version_name
+        self.minimum_version_code = minimum_version_code
+        self.minimum_version_name = minimum_version_name
+        self.force_update_message = force_update_message
+        self.optional_update_message = optional_update_message
     }
     
     convenience override init() {
