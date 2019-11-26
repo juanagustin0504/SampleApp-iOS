@@ -22,6 +22,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let dbVC = self.storyboard?.instantiateViewController(withIdentifier: "checkDatabase")
+        self.present(dbVC!, animated: true)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

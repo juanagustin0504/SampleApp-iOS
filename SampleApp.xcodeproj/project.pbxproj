@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7689C6A32384F9D50099811A /* NetworkingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7689C6A22384F9D50099811A /* NetworkingViewController.swift */; };
+		7689C6A32384F9D50099811A /* DatabaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7689C6A22384F9D50099811A /* DatabaseViewController.swift */; };
 		768E18552382177A005E1E8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768E18542382177A005E1E8C /* AppDelegate.swift */; };
 		768E18572382177A005E1E8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768E18562382177A005E1E8C /* SceneDelegate.swift */; };
 		768E18592382177A005E1E8C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768E18582382177A005E1E8C /* MainViewController.swift */; };
@@ -22,7 +22,7 @@
 
 /* Begin PBXFileReference section */
 		2C8D50AC58F47BC17DE5D2DF /* Pods-SampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.debug.xcconfig"; path = "Target Support Files/Pods-SampleApp/Pods-SampleApp.debug.xcconfig"; sourceTree = "<group>"; };
-		7689C6A22384F9D50099811A /* NetworkingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkingViewController.swift; sourceTree = "<group>"; };
+		7689C6A22384F9D50099811A /* DatabaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseViewController.swift; sourceTree = "<group>"; };
 		768E18512382177A005E1E8C /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		768E18542382177A005E1E8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		768E18562382177A005E1E8C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 				76AD9AA1238BB2C000BA7244 /* db_data.json */,
 				768E18582382177A005E1E8C /* MainViewController.swift */,
 				768E186E23822E75005E1E8C /* WebViewController.swift */,
-				7689C6A22384F9D50099811A /* NetworkingViewController.swift */,
+				7689C6A22384F9D50099811A /* DatabaseViewController.swift */,
 				76AD9AA2238BB45F00BA7244 /* DbVersionData.swift */,
 				768E185D2382177B005E1E8C /* Assets.xcassets */,
 				768E185F2382177B005E1E8C /* LaunchScreen.storyboard */,
@@ -221,7 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7689C6A32384F9D50099811A /* NetworkingViewController.swift in Sources */,
+				7689C6A32384F9D50099811A /* DatabaseViewController.swift in Sources */,
 				768E18592382177A005E1E8C /* MainViewController.swift in Sources */,
 				768E18552382177A005E1E8C /* AppDelegate.swift in Sources */,
 				768E18572382177A005E1E8C /* SceneDelegate.swift in Sources */,

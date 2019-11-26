@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class NetworkingViewController: UIViewController {
+class DatabaseViewController: UIViewController {
     
     var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
@@ -19,7 +19,7 @@ class NetworkingViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-
+        
         // indicator 실행 //
         activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.frame = CGRect(x: view.frame.midX - 50, y: view.frame.midY - 50, width: 100, height: 100)
@@ -49,8 +49,6 @@ class NetworkingViewController: UIViewController {
         
         
         self.activityIndicator.removeFromSuperview()
-        
-        
         
         
     } // end of viewDidLoad
@@ -113,11 +111,11 @@ class NetworkingViewController: UIViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
             // 메인화면으로 이동 //
-            let storyboard  = UIStoryboard(name: "MainActivity", bundle: nil)
-
-            let VC = storyboard.instantiateViewController(withIdentifier: "Main") as! MainViewController
-
-            self.navigationController?.pushViewController(VC, animated: true)
+//            let storyboard  = UIStoryboard(name: "MainActivity", bundle: nil)
+//
+//            let VC = storyboard.instantiateViewController(withIdentifier: "Main") as! MainViewController
+//
+//            self.navigationController?.pushViewController(VC, animated: true)
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action: UIAlertAction!) in
@@ -143,5 +141,6 @@ class NetworkingViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
 
 }
