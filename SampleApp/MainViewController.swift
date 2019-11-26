@@ -110,10 +110,6 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
             self.present(alert, animated: true, completion: nil)
         }
         
-        
     }
-    
-    
-    
     
 }
