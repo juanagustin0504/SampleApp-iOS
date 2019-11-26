@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Pba-tE-3ad">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PSV-3v-7uv">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -10,8 +10,7 @@
         <!--MainActivity-->
         <scene sceneID="f8H-4V-0Oo">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oaH-h5-aJw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="oJJ-LL-fde" customClass="MainViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Main" id="oJJ-LL-fde" customClass="MainViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Cw-oJ-8YV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -44,8 +43,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="MainActivity" id="hKI-nw-dP7"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oaH-h5-aJw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1288.8" y="40.929535232383813"/>
+            <point key="canvasLocation" x="1476" y="41"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hl4-0l-ITk">
@@ -63,12 +63,11 @@
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="456.80000000000001" y="40.929535232383813"/>
+            <point key="canvasLocation" x="647" y="41"/>
         </scene>
         <!--Bizplay-->
         <scene sceneID="25s-Pt-xMJ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pf2-Am-J30" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="c1H-KM-6qr" customClass="WebViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uXq-Aj-dno">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -79,8 +78,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Bizplay" id="pRT-oO-bJR"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pf2-Am-J30" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1994" y="41"/>
+            <point key="canvasLocation" x="2244" y="41"/>
         </scene>
         <!--Networking View Controller-->
         <scene sceneID="GT3-x5-SG3">
@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejr-hI-PmJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="457" y="700"/>
+            <point key="canvasLocation" x="1126" y="922"/>
         </scene>
     </scenes>
 </document>

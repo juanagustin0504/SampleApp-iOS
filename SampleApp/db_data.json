@@ -1,5 +1,7 @@
 {
   "version" : {
+    "system_maintenance" : false,
+    "system_maintenance_message" : "서비스 점검 중입니다.",
     "force_update_message" : "앱 업데이트 후 이용해주세요.",
     "lastest_version_code" : "2",
     "lastest_version_name" : "0.2",

@@ -33,13 +33,17 @@ class NetworkingViewController: UIViewController {
         ref = Database.database().reference()
         
         ref.child("version").observeSingleEvent(of: .value, with: { snapShot in
+            
             let versionDic = snapShot.value as? Dictionary<String, AnyObject>
             
             
             let versionDbData = DbVersionData()
             versionDbData.setValuesForKeys(versionDic!)
-           
-            self.checkUpdateVersion(dbdata: versionDbData)
+            
+            if !self.checkSystemMaintenance(dbdata: versionDbData) {
+                self.checkUpdateVersion(dbdata: versionDbData)
+            }
+            
         
         })
         
@@ -47,7 +51,24 @@ class NetworkingViewController: UIViewController {
         self.activityIndicator.removeFromSuperview()
         
         
+        
+        
     } // end of viewDidLoad
+    
+    func checkSystemMaintenance(dbdata:DbVersionData) -> Bool {
+        if dbdata.system_maintenance {
+            let refreshAlert = UIAlertController(title: "System Maintenance", message: dbdata.system_maintenance_message, preferredStyle: UIAlertController.Style.alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action: UIAlertAction!) in
+                // 앱 종료 //
+                exit(0)
+            }))
+            
+            self.present(refreshAlert, animated: true, completion: nil)
+        }
+        
+        return dbdata.system_maintenance
+    }
     
     // 버전 체크 //
     func checkUpdateVersion(dbdata:DbVersionData){
@@ -92,6 +113,11 @@ class NetworkingViewController: UIViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
             // 메인화면으로 이동 //
+            let storyboard  = UIStoryboard(name: "MainActivity", bundle: nil)
+
+            let VC = storyboard.instantiateViewController(withIdentifier: "Main") as! MainViewController
+
+            self.navigationController?.pushViewController(VC, animated: true)
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action: UIAlertAction!) in
