@@ -19,7 +19,6 @@ class DatabaseViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        
         // indicator 실행 //
         activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.frame = CGRect(x: view.frame.midX - 50, y: view.frame.midY - 50, width: 100, height: 100)
@@ -29,7 +28,6 @@ class DatabaseViewController: UIViewController {
         self.view.addSubview(activityIndicator)
         
         // 서버 통신 시작 //
-        
         ref = Database.database().reference()
         
         ref.child("version").observeSingleEvent(of: .value, with: { snapShot in
@@ -43,10 +41,7 @@ class DatabaseViewController: UIViewController {
             if !self.checkSystemMaintenance(dbdata: versionDbData) {
                 self.checkUpdateVersion(dbdata: versionDbData)
             }
-            
-        
         })
-        
         
         self.activityIndicator.removeFromSuperview()
         
@@ -55,9 +50,9 @@ class DatabaseViewController: UIViewController {
     
     func checkSystemMaintenance(dbdata:DbVersionData) -> Bool {
         if dbdata.system_maintenance {
-            let refreshAlert = UIAlertController(title: "System Maintenance", message: dbdata.system_maintenance_message, preferredStyle: UIAlertController.Style.alert)
+            let refreshAlert = UIAlertController(title: "서비스 점검 알림", message: dbdata.system_maintenance_message, preferredStyle: UIAlertController.Style.alert)
             
-            refreshAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (action: UIAlertAction!) in
+            refreshAlert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { (action: UIAlertAction!) in
                 // 앱 종료 //
                 exit(0)
             }))
@@ -88,15 +83,16 @@ class DatabaseViewController: UIViewController {
     // 강제업데이트 //
     func forceUdpateAlert(message:String) {
         
-        let refreshAlert = UIAlertController(title: "UPDATE", message: message, preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "필수 업데이트", message: message, preferredStyle: UIAlertController.Style.alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action: UIAlertAction!) in
             // 앱 종료 //
             exit(0)
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (action: UIAlertAction!) in
             // 앱 업데이트 //
+            
         }))
         
         self.present(refreshAlert, animated: true, completion: nil)
@@ -107,18 +103,19 @@ class DatabaseViewController: UIViewController {
     // 선택업데이트 //
     func optionalUpdateAlert(message:String, version:Int) {
         
-        let refreshAlert = UIAlertController(title: "UPDATE", message: message, preferredStyle: UIAlertController.Style.alert)
+        let refreshAlert = UIAlertController(title: "선택 업데이트", message: message, preferredStyle: UIAlertController.Style.alert)
         
-        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action: UIAlertAction!) in
             // 메인화면으로 이동 //
 //            let storyboard  = UIStoryboard(name: "MainActivity", bundle: nil)
 //
 //            let VC = storyboard.instantiateViewController(withIdentifier: "Main") as! MainViewController
 //
 //            self.navigationController?.pushViewController(VC, animated: true)
+            self.dismiss(animated: true, completion: nil)
         }))
         
-        refreshAlert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (action: UIAlertAction!) in
+        refreshAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (action: UIAlertAction!) in
             // 앱 업데이트 //
         }))
         

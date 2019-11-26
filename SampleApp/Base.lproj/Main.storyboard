@@ -85,7 +85,7 @@
         <!--Database View Controller-->
         <scene sceneID="GT3-x5-SG3">
             <objects>
-                <viewController storyboardIdentifier="checkDatabase" id="Pba-tE-3ad" customClass="DatabaseViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="checkDatabase" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pba-tE-3ad" customClass="DatabaseViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8DL-07-xq0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
