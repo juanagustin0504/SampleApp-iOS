@@ -32,7 +32,7 @@ class DatabaseViewController: UIViewController {
         
         ref.child("version").observeSingleEvent(of: .value, with: { snapShot in
             
-            let versionDic = snapShot.value as? Dictionary<String, AnyObject>
+            let versionDic = snapShot.value as? Dictionary<String, Any>
             
             
             let versionDbData = DbVersionData()
