@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="PSV-3v-7uv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="34R-C4-hlg">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
@@ -10,7 +10,7 @@
         <!--MainActivity-->
         <scene sceneID="f8H-4V-0Oo">
             <objects>
-                <viewController storyboardIdentifier="Main" id="oJJ-LL-fde" customClass="MainViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainActivity" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oJJ-LL-fde" customClass="MainViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Cw-oJ-8YV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,7 +23,7 @@
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="c1H-KM-6qr" kind="show" id="0O3-5G-fXR"/>
+                                    <segue destination="c1H-KM-6qr" kind="show" identifier="segueGo2Biz" id="B1w-Tu-yaJ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCe-fE-s2J">
@@ -47,28 +47,10 @@
             </objects>
             <point key="canvasLocation" x="1476" y="41"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Hl4-0l-ITk">
-            <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N94-7h-h39" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PSV-3v-7uv" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="1k1-An-r46">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="oJJ-LL-fde" kind="relationship" relationship="rootViewController" id="AaO-oo-ofd"/>
-                    </connections>
-                </navigationController>
-            </objects>
-            <point key="canvasLocation" x="167" y="41"/>
-        </scene>
         <!--Bizplay-->
         <scene sceneID="25s-Pt-xMJ">
             <objects>
-                <viewController id="c1H-KM-6qr" customClass="WebViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BizWebView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="c1H-KM-6qr" customClass="WebViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uXq-Aj-dno">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -82,7 +64,7 @@
             </objects>
             <point key="canvasLocation" x="2314" y="41"/>
         </scene>
-        <!--Database View Controller-->
+        <!--DatabaseActivity-->
         <scene sceneID="GT3-x5-SG3">
             <objects>
                 <viewController storyboardIdentifier="checkDatabase" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Pba-tE-3ad" customClass="DatabaseViewController" customModule="SampleApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -108,10 +90,40 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="1Sj-sc-nBh"/>
                     </view>
+                    <navigationItem key="navigationItem" title="DatabaseActivity" id="YGa-LT-KNb">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="nvU-kp-Bbc">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wZX-2M-pSA">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <connections>
+                                <segue destination="oJJ-LL-fde" kind="show" identifier="segueMain" id="9xb-yz-Op2"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejr-hI-PmJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1476" y="-617"/>
+            <point key="canvasLocation" x="582" y="41"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="6lg-Xz-hQv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="34R-C4-hlg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="eMV-fG-JEO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Pba-tE-3ad" kind="relationship" relationship="rootViewController" id="L5f-kq-HRZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3zR-Yg-sMj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-306" y="41"/>
         </scene>
     </scenes>
 </document>

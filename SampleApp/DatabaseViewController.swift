@@ -18,6 +18,7 @@ class DatabaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         // Do any additional setup after loading the view.
         // indicator 실행 //
         activityIndicator = UIActivityIndicatorView(style: .large)
@@ -107,12 +108,8 @@ class DatabaseViewController: UIViewController {
         
         refreshAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action: UIAlertAction!) in
             // 메인화면으로 이동 //
-//            let storyboard  = UIStoryboard(name: "MainActivity", bundle: nil)
-//
-//            let VC = storyboard.instantiateViewController(withIdentifier: "Main") as! MainViewController
-//
-//            self.navigationController?.pushViewController(VC, animated: true)
-            self.dismiss(animated: true, completion: nil)
+            self.performSegue(withIdentifier: "segueMain", sender: nil)
+            
         }))
         
         refreshAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (action: UIAlertAction!) in

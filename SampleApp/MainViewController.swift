@@ -22,12 +22,14 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let dbVC = self.storyboard?.instantiateViewController(withIdentifier: "checkDatabase")
-        self.present(dbVC!, animated: true)
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         if isScreenTimeOver { // 앱 미사용으로 인해 메인뷰로 돌아왔을 때 //
             showAlert()
             isScreenTimeOver = !isScreenTimeOver
@@ -35,6 +37,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    @IBAction func btnGo2Biz(_ sender: UIButton) {
+        self.performSegue(withIdentifier: "segueGo2Biz", sender: nil)
+    }
     
     // 앱 미사용 알림 알렛 //
     func showAlert() {

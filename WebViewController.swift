@@ -51,6 +51,8 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
 
         // Do any additional setup after loading the view.
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
         let lnk = "https://www.bizplay.co.kr/"
         let url = URL(string: lnk)
         let request = URLRequest(url: url!)
