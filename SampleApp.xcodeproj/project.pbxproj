@@ -38,7 +38,7 @@
 		768E185D2382177B005E1E8C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		768E18602382177B005E1E8C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		768E18622382177B005E1E8C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		768E186E23822E75005E1E8C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = ../WebViewController.swift; sourceTree = "<group>"; };
+		768E186E23822E75005E1E8C /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		7694A95F23AB492900351EE3 /* MGViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGViewController.swift; sourceTree = "<group>"; };
 		7694A96123AB495600351EE3 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		7694A96323AB4A0100351EE3 /* DataAccess.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataAccess.swift; sourceTree = "<group>"; };
@@ -94,24 +94,11 @@
 		768E18532382177A005E1E8C /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
-				7694A95E23AB48D100351EE3 /* MG */,
-				768E18542382177A005E1E8C /* AppDelegate.swift */,
-				768E18562382177A005E1E8C /* SceneDelegate.swift */,
-				768E185A2382177A005E1E8C /* Main.storyboard */,
+				7694A97023AB72CF00351EE3 /* Main */,
+				7694A96F23AB72B400351EE3 /* View */,
+				7694A96E23AB729400351EE3 /* ApplicationFiles */,
+				7694A96D23AB728100351EE3 /* Common */,
 				76AD9AA1238BB2C000BA7244 /* db_data.json */,
-				768E18582382177A005E1E8C /* MainViewController.swift */,
-				768E186E23822E75005E1E8C /* WebViewController.swift */,
-				7689C6A22384F9D50099811A /* DatabaseViewController.swift */,
-				76AD9AA2238BB45F00BA7244 /* DbVersionData.swift */,
-				768E185D2382177B005E1E8C /* Assets.xcassets */,
-				768E185F2382177B005E1E8C /* LaunchScreen.storyboard */,
-				768E18622382177B005E1E8C /* Info.plist */,
-				76D005D823850B0600E80302 /* GoogleService-Info.plist */,
-				7694A96B23AB60AD00351EE3 /* Request.swift */,
-				7694A96123AB495600351EE3 /* Response.swift */,
-				7694A96723AB4A1200351EE3 /* DeviceInfo.swift */,
-				7694A96323AB4A0100351EE3 /* DataAccess.swift */,
-				7694A96423AB4A0100351EE3 /* Extension.swift */,
 			);
 			path = SampleApp;
 			sourceTree = "<group>";
@@ -123,6 +110,51 @@
 				7694A96923AB607700351EE3 /* MGViewModel.swift */,
 			);
 			path = MG;
+			sourceTree = "<group>";
+		};
+		7694A96D23AB728100351EE3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				7694A96B23AB60AD00351EE3 /* Request.swift */,
+				7694A96123AB495600351EE3 /* Response.swift */,
+				7694A96723AB4A1200351EE3 /* DeviceInfo.swift */,
+				7694A96323AB4A0100351EE3 /* DataAccess.swift */,
+				7694A96423AB4A0100351EE3 /* Extension.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		7694A96E23AB729400351EE3 /* ApplicationFiles */ = {
+			isa = PBXGroup;
+			children = (
+				768E18542382177A005E1E8C /* AppDelegate.swift */,
+				768E18562382177A005E1E8C /* SceneDelegate.swift */,
+				768E185F2382177B005E1E8C /* LaunchScreen.storyboard */,
+				768E185D2382177B005E1E8C /* Assets.xcassets */,
+				768E18622382177B005E1E8C /* Info.plist */,
+				76D005D823850B0600E80302 /* GoogleService-Info.plist */,
+			);
+			path = ApplicationFiles;
+			sourceTree = "<group>";
+		};
+		7694A96F23AB72B400351EE3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				768E18582382177A005E1E8C /* MainViewController.swift */,
+				768E186E23822E75005E1E8C /* WebViewController.swift */,
+				7689C6A22384F9D50099811A /* DatabaseViewController.swift */,
+				76AD9AA2238BB45F00BA7244 /* DbVersionData.swift */,
+				7694A95E23AB48D100351EE3 /* MG */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7694A97023AB72CF00351EE3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				768E185A2382177A005E1E8C /* Main.storyboard */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		DB2F5779FCE5A916D5A7122D /* Pods */ = {
@@ -409,7 +441,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 994BWAVX9G;
-				INFOPLIST_FILE = SampleApp/Info.plist;
+				INFOPLIST_FILE = SampleApp/ApplicationFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -428,7 +460,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 994BWAVX9G;
-				INFOPLIST_FILE = SampleApp/Info.plist;
+				INFOPLIST_FILE = SampleApp/ApplicationFiles/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
