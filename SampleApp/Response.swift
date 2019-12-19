@@ -9,10 +9,15 @@
 import Foundation
 
 struct Response: Decodable {
-    let C_PROGRAM_VER       : String
-    let C_MINIMUM_VER       : String
-    let C_ACT_YN            : String
-    let C_ACT_ERR_MSG       : String
-    let C_UPDATE_CLOSE_YN   : String
-    let C_UPDATE_ACT        : String
+    
+    let RESP_DATA: _resp_data
+    
+    struct _resp_data: Decodable {
+        let C_PROGRAM_VER       : String
+        let C_MINIMUM_VER       : String
+        let C_ACT_YN            : String
+        let C_ACT_ERR_MSG       : String
+        let C_UPDATE_CLOSE_YN   : String
+        let C_UPDATE_ACT        : String
+    }
 }

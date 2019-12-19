@@ -51,7 +51,7 @@ class DataAccess {
         return body
     }
     
-    func queryString<T:Encodable>(body:T) -> String {
+    func queryString(body: Request) -> String {
         let request = body
         guard let str = request.asJSONString() else { return "" }
         return str
