@@ -28,37 +28,38 @@ class MGViewController: UIViewController {
         activityIndicator.startAnimating()
         self.view.addSubview(activityIndicator)
         self.requestMG()
-        self.activityIndicator.removeFromSuperview()
+        
     }
 
     private func requestMG() {
         mgViewModel.requestMG { (error) in
             if error == nil {
+                DispatchQueue.main.async {
+                    self.checkSystemMaintenance(responseObj: self.mgViewModel.responseData!)
+                    self.checkUpdateVersion(responseObj: self.mgViewModel.responseData!)
+                    self.activityIndicator.removeFromSuperview()
+                }
                 
             } else {
-                self.alertMessage(title: "안내", message: error?.localizedDescription, action: nil)
+                DispatchQueue.main.async {
+                    self.alertMessage(title: "안내", message: error?.localizedDescription, action: nil)
+                }
+                
             }
         }
     }
     
-    private func gotoLoginScreen() {
-        
-        let mainSb = UIStoryboard(name: "Main", bundle: nil)
-        let mainVc = mainSb.instantiateViewController(withIdentifier: "MainViewController_sid")
-        self.navigationController?.pushViewController(mainVc, animated: true)
-        
+    private func gotoMainScreen() {
+        DispatchQueue.main.async {
+            let mainSb = UIStoryboard(name: "Main", bundle: nil)
+            let mainVc = mainSb.instantiateViewController(withIdentifier: "MainViewController_sid")
+            self.navigationController?.pushViewController(mainVc, animated: true)
+        }
     }
     
     func checkSystemMaintenance(responseObj: Response) {
         if responseObj.RESP_DATA.C_ACT_YN == "N" {
-            let refreshAlert = UIAlertController(title: "서비스 점검 알림", message: responseObj.RESP_DATA.C_ACT_ERR_MSG, preferredStyle: UIAlertController.Style.alert)
-            
-            refreshAlert.addAction(UIAlertAction(title: "확인", style: .cancel, handler: { (action: UIAlertAction!) in
-                // 앱 종료 //
-                exit(0)
-            }))
-            
-            self.present(refreshAlert, animated: true, completion: nil)
+            self.alertMessage(title: "서비스 점검 알림", message: responseObj.RESP_DATA.C_ACT_ERR_MSG, action: { action in exit(0) })
         }
     }
     
@@ -70,10 +71,10 @@ class MGViewController: UIViewController {
         let infoDic = Bundle.main.infoDictionary!
         let appBuildVersion = infoDic["CFBundleVersion"] as? String
         
-        if (Int(appBuildVersion!)! < Int(appMinimumVersion)!) {
+        if (appBuildVersion! < appMinimumVersion) {
             // 강제업데이트 //
             forceUdpateAlert(message: responseObj.RESP_DATA.C_UPDATE_ACT)
-        } else if(Int(appBuildVersion!)! < Int(appLastestVersion)!) {
+        } else if (appBuildVersion! < appLastestVersion) {
             // 선택업데이트 //
             optionalUpdateAlert(message: responseObj.RESP_DATA.C_UPDATE_ACT, version: Int(appLastestVersion)!)
         }
@@ -82,19 +83,11 @@ class MGViewController: UIViewController {
     // 강제업데이트 //
     func forceUdpateAlert(message:String) {
         
-        let refreshAlert = UIAlertController(title: "필수 업데이트", message: message, preferredStyle: UIAlertController.Style.alert)
-        
-        refreshAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action: UIAlertAction!) in
-            // 앱 종료 //
+        self.alertMessageConfirm(title: "필수 업데이트", message: message, confirmHandler: {(action) in
+            UIApplication.shared.open(URL(string: "itunes://")!, options: [:], completionHandler: nil)
+        }, cancelHandler: {(action) in
             exit(0)
-        }))
-        
-        refreshAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (action: UIAlertAction!) in
-            // 앱 업데이트 //
-            
-        }))
-        
-        self.present(refreshAlert, animated: true, completion: nil)
+        })
 
     } // end of forceUpdateAlert
     
@@ -102,21 +95,11 @@ class MGViewController: UIViewController {
     // 선택업데이트 //
     func optionalUpdateAlert(message:String, version:Int) {
         
-        let refreshAlert = UIAlertController(title: "선택 업데이트", message: message, preferredStyle: UIAlertController.Style.alert)
-        
-        refreshAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action: UIAlertAction!) in
-            // 메인화면으로 이동 //
-            self.gotoLoginScreen()
-        }))
-        
-        refreshAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { (action: UIAlertAction!) in
-            // 앱 업데이트 //
-            
-            
-        }))
-        
-        
-        self.present(refreshAlert, animated: true, completion: nil)
+        self.alertMessageConfirm(title: "선택 업데이트", message: message, confirmHandler: {(action) in
+            UIApplication.shared.open(URL(string: "itunes://")!, options: [:], completionHandler: nil)
+        }, cancelHandler: {(action) in
+            self.gotoMainScreen()
+        })
         
     } // end of optionalUpdateAlert
 

@@ -10,7 +10,7 @@ import Foundation
 
 class MGViewModel {
     
-    let responseData: Response? = nil
+    var responseData: Response? = nil
     
     func requestMG(completionHandler: @escaping (NSError?) -> Void) {
         let bodyReq = Request()
@@ -18,7 +18,9 @@ class MGViewModel {
             switch result {
             case .failure(let error):
                 completionHandler(error)
-            case .success(_):
+            case .success(let responseObj):
+                self.responseData = responseObj
+                print(responseObj)
                 completionHandler(nil)
             }
         }

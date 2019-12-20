@@ -115,7 +115,6 @@ class DataAccess {
             do {
                 let responseObj = try JSONDecoder().decode(responseType, from: dataResult)
                 completion(.success(responseObj))
-                print(responseObj)
             } catch {
                 print("error map model")
                 completion(.failure(error as NSError))
