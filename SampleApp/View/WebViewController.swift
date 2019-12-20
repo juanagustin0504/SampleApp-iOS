@@ -94,6 +94,11 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
         currentTime = time
     }
     
+    // 뷰가 나타날 때 //
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
     // 뷰컨이 사라질 때 //
     override func viewWillDisappear(_ animated: Bool) {
         timeLimitStop() // 타이머 정지 //
@@ -164,7 +169,6 @@ class WebViewController: UIViewController, WKUIDelegate, WKNavigationDelegate, U
     
     @available(iOS 8.0, *)
     public func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        activityIndicator = UIActivityIndicatorView(style: .large)
         activityIndicator.frame = CGRect(x: view.frame.midX - 50, y: view.frame.midY - 50, width: 100, height: 100)
         activityIndicator.color = UIColor.gray
         activityIndicator.hidesWhenStopped = true

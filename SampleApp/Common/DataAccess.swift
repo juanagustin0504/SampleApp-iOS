@@ -57,10 +57,13 @@ class DataAccess {
         return str
     }
     
-    private func request() -> URLRequest {
-        let urlSt = "https://www.bizplay.co.kr/MgGate?master_id=I_SMART_TEST_G_1"
-        let methodSt = "GET"
-        
+    private func request(api: String) -> URLRequest {
+        var urlSt = "https://www.bizplay.co.kr/MgGate?master_id=I_SMART_TEST_G_1"
+        var methodSt = "POST"
+        if api == "mg" {
+            urlSt = "https://www.bizplay.co.kr/MgGate?master_id=I_SMART_TEST_G_1"
+            methodSt = "GET"
+        }
         
         var request: URLRequest!
         request = URLRequest(url: URL(string: urlSt)!)
@@ -74,7 +77,7 @@ class DataAccess {
     /** Request data task with API and response data & error as completion */
     func fetch(api: String, body: Request, responseType : Response.Type, shouldShowLoading: Bool = true, completion: @escaping (Result<Response, NSError>) -> Void) {
         
-        let req = request()
+        let req = request(api: api)
         
         
         DataAccess.session.dataTask(with: req) { (data, response, error) in
@@ -112,6 +115,7 @@ class DataAccess {
             do {
                 let responseObj = try JSONDecoder().decode(responseType, from: dataResult)
                 completion(.success(responseObj))
+                print(responseObj)
             } catch {
                 print("error map model")
                 completion(.failure(error as NSError))

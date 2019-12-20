@@ -38,7 +38,9 @@ class MainViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func btnGo2Biz(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "segueGo2Biz", sender: nil)
+        let mainSb = UIStoryboard(name: "Main", bundle: nil)
+        let webVc = mainSb.instantiateViewController(withIdentifier: "WebViewController_sid")
+        self.navigationController?.pushViewController(webVc, animated: true)
     }
     
     // 앱 미사용 알림 알렛 //

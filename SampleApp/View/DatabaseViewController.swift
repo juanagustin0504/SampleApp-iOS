@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Firebase
 
 class DatabaseViewController: UIViewController {
     
@@ -29,20 +28,20 @@ class DatabaseViewController: UIViewController {
         self.view.addSubview(activityIndicator)
         
         // 서버 통신 시작 //
-        ref = Database.database().reference()
-        
-        ref.child("version").observeSingleEvent(of: .value, with: { snapShot in
-            
-            let versionDic = snapShot.value as? Dictionary<String, Any>
-            
-            
-            let versionDbData = DbVersionData()
-            versionDbData.setValuesForKeys(versionDic!)
-            
-            if !self.checkSystemMaintenance(dbdata: versionDbData) {
-                self.checkUpdateVersion(dbdata: versionDbData)
-            }
-        })
+//        ref = Database.database().reference()
+//        
+//        ref.child("version").observeSingleEvent(of: .value, with: { snapShot in
+//            
+//            let versionDic = snapShot.value as? Dictionary<String, Any>
+//            
+//            
+//            let versionDbData = DbVersionData()
+//            versionDbData.setValuesForKeys(versionDic!)
+//            
+//            if !self.checkSystemMaintenance(dbdata: versionDbData) {
+//                self.checkUpdateVersion(dbdata: versionDbData)
+//            }
+//        })
         
         self.activityIndicator.removeFromSuperview()
         
